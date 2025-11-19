@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Planos de Saúde</title>
+
+  <!-- Link para o CSS externo -->
+  <link rel="stylesheet" href="Plano_de_saude.css" />
+</head>
+<body>
+  <h1>Calculadora de Custo-Benefício de Planos de Saúde</h1>
+  <label>Nome: <input type="text" id="nome" /></label><br />
+<label>Idade: <input type="number" id="idade" /></label><br />
+<label>Peso (kg): <input type="number" id="peso" step="0.1" /></label><br />
+<label>Altura (m): <input type="number" id="altura" step="0.01" /></label><br />
+<button onclick="calcular()">Calcular</button>
+
+<div id="resultado"></div>
+
+<script src="Plano_de_saude.js"></script>
+
+</body>
+</html>
