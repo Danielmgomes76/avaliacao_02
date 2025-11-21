@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento - Tradução e Interpretação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Orçamento de Libras</h1>
+        <div class="form-group">
+            <label for="tipoServico">Selecione o Tipo de Serviço:</label>
+            <select id="tipoServico" onchange="trocarFormulario()">
+                <option value="">-- Selecione --</option>
+                <option value="interpretacao">Interpretação</option>
+                <option value="traducao">Tradução</option>
+            </select>
+        </div>
+        <div id="form-interpretacao" class="hidden">
+            <h2>Dados da Interpretação</h2>            
+            <div class="form-group">
+                <label>Nome do Evento:</label>
+                <input type="text" id="int-nome">
+            </div>
+            <div class="form-group">
+                <label>Tipo do Evento:</label>
+                <select id="int-tipo">
+                    <option value="padrao">Jurídico</option>
+                    <option value="padrao">Educação</option>
+                    <option value="artistico">Artístico/Cultural</option>
+                    <option value="padrao">Vídeo Conferência</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tempo do evento (em minutos):</label>
+                <input type="number" id="int-tempo" placeholder="Ex: 90">
+            </div>
+            <div class="form-group">
+                <label>Ficará Gravado?</label>
+                <select id="int-gravado">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Endereço (Opcional):</label>
+                <input type="text" id="int-endereco">
+            </div>
+            <button onclick="calcularInterpretacao()">Calcular Interpretação</button>
+        </div>
+        <div id="form-traducao" class="hidden">
+            <h2>Dados da Tradução</h2>
+            <div class="form-group">
+                <label>Título do Material:</label>
+                <input type="text" id="trad-titulo">
+            </div>
+            <div class="form-group">
+                <label>Tipo de Material:</label>
+                <select id="trad-tipo">
+                    <option value="conteudo">VideoBook</option>
+                    <option value="conteudo">Filme</option>
+                    <option value="conteudo">Documentário</option>
+                    <option value="conteudo">Programa de TV</option>
+                    <option value="propaganda">Propaganda de Marcas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tempo do vídeo (em minutos):</label>
+                <input type="number" id="trad-tempo" placeholder="Ex: 10">
+            </div>
+            <div class="form-group">
+                <label>Legendagem?</label>
+                <select id="trad-legenda">
+                    <option value="nao">Não</option>
+                    <option value="sim">Sim</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tipo de Edição:</label>
+                <select id="trad-edicao">
+                    <option value="simples">Edição Simples</option>
+                    <option value="completa">Edição Completa</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Descrição (Opcional):</label>
+                <input type="text" id="trad-descricao">
+            </div>
+            <button onclick="calcularTraducao()">Calcular Tradução</button>
+        </div>
+        <div id="resultado" class="hidden">
+            <h3>Resumo do Orçamento</h3>
+            <div id="lista-resultados"></div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
