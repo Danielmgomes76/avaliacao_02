@@ -1,7 +1,7 @@
 /**
  * Plano_de_saude.js
- * * Código JavaScript completo e atualizado para a calculadora de planos de saúde,
- * incluindo:
+ * * Código JavaScript criado para calculadora de preço de plano de saúde,
+ * Está incluso:
  * 1. Cálculo e exibição do IMC.
  * 2. Aceitação de vírgula ou ponto como separador decimal.
  * 3. Função para limpar campos (Novo Cálculo).
@@ -49,7 +49,8 @@ function calcular() {
     const nome = document.getElementById("nome").value.trim();
     const idade = parseInt(document.getElementById("idade").value);
     
-    // CORREÇÃO: ACEITA VÍRGULA OU PONTO, SUBSTITUINDO VÍRGULA POR PONTO ANTES DO parseFloat
+    // Aceita virgulo ou ponto , para não ter problema com a maneira que a pessoa incluir os dados, Substituindo a vírgula por ponto antes do parseFloat.
+
     const peso_str = document.getElementById("peso").value.replace(',', '.');
     const altura_str = document.getElementById("altura").value.replace(',', '.');
 
@@ -66,7 +67,7 @@ function calcular() {
     const fator = fatorComorbidade(imc);
     const classificacao = classificarIMC(imc);
 
-    // Cálculos de Planos (mantidos inalterados)
+    // Cálculos de Planos.
     const a_basico = 100 + (idade * 10 * imc10);
     const a_standard = (150 + (idade * 15)) * imc10;
     const a_premium = (200 - (imc * 10) + (idade * 20)) * imc10;
@@ -103,6 +104,5 @@ function calcular() {
 
     tabela += `</table>`;
     
-    // Injeta todo o HTML gerado (título, IMC e tabela) no div "resultado"
     document.getElementById("resultado").innerHTML = tabela;
 }
