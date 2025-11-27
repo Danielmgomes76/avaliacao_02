@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#city-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#city-input:focus {
+    border-color: #3498db;
+}
+
+#search-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #2980b9;
+}
+
+.status-message {
+    min-height: 20px; /* Garante que a área não suma */
+    margin-bottom: 20px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.weather-result {
+    border-top: 1px solid #ecf0f1;
+    padding-top: 20px;
+}
+
+#city-name {
+    color: #3498db;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    text-align: left;
+}
+
+.label {
+    font-weight: bold;
+    color: #7f8c8d;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.value {
+    font-size: 1.4em;
+    color: #2c3e50;
+    margin: 0;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Clima ☁️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Previsão do Tempo</h1>
+
+        <div class="search-box">
+            <input type="text" id="city-input" placeholder="Digite o nome da cidade">
+            <button id="search-button">Buscar</button>
+        </div>
+
+        <p class="status-message" id="status-message"></p>
+
+        <div class="weather-result" id="weather-result" style="display: none;">
+            <h2 id="city-name"></h2>
+            
+            <div class="details-grid">
+                <div>
+                    <span class="label">Temperatura:</span>
+                    <p class="value" id="temperature"></p>
+                </div>
+                <div>
+                    <span class="label">Sensação Térmica:</span>
+                    <p class="value" id="apparent-temperature"></p>
+                </div>
+                <div>
+                    <span class="label">Umidade:</span>
+                    <p class="value" id="humidity"></p>
+                </div>
+                <div>
+                    <span class="label">Condição:</span>
+                    <p class="value" id="weather-description"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
