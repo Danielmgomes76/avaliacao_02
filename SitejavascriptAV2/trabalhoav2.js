@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailCampo = document.getElementById('email');
         const emailValor = emailCampo.value.trim();
         if (emailValor !== '' && !regexEmail.test(emailValor)) {
+            alert("Email inválido! Insira um email válido.");
             console.log("Email inválido detectado:", emailValor);
             emailCampo.classList.add('campo-erro');
             formularioValido = false;
@@ -34,9 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             alert("Atenção! Preencha todos os campos obrigatórios para enviar sua solicitação de parceria.");
         }
-        const receberSubmit = document.querySelector('#contato-form');
-        if (receberSubmit) {
-            alert("Formulário enviado com sucesso! Em breve entraremos em contato.");
+        if (formularioValido) {
+            const receberSubmit = document.querySelector('#contato-form');
+            if (receberSubmit) {
+                alert("Formulário enviado com sucesso! Em breve entraremos em contato.");
+            }
         }
     });
 });
