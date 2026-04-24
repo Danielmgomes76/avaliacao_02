@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+header {
+    background: #fff;
+    padding: 20px 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;  
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d35400; /* Laranja terra */
+}
+
+.logo span {
+    color: #27ae60; /* Verde natureza */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li { margin-left: 25px; }
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Hero Section com a frase principal */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.btn-cta {
+    background: #e67e22;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Galeria de Destinos */
+.section-title {
+  text-align: center;
+  padding: 50px 10px;   /* aumenta o espaço interno */
+}
+.section-title p {
+  font-size: 1.4em;   /* aumenta o tamanho da fonte */
+  line-height: 0.5;   /* melhora o espaçamento entre linhas */
+  font-weight: 400;   /* controla a espessura da letra */
+  margin: 0;          /* remove espaços extras */
+}
+
+.section-title h2 {
+  font-size: 2em;
+  line-height: 4;
+  margin-bottom: 4px;
+  white-space: normal;
+  position: relative;
+  z-index: 2;           /* garante que o título fique por cima */
+}
+
+.gallery img {
+  height: 10px;        /* reduz altura das imagens */
+  object-fit: cover;    /* mantém proporção sem distorcer */
+}
+
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: -5px 2%;
+}
+
+.destination-card {
+    position: relative;
+    width: 200px;
+    height: 350px;
+    margin: 15px;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.destination-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    width: 100%;
+    padding: 20px;
+    color: white;
+}
+
+.destination-card:hover img {
+    transform: scale(1.1);
+}
+
+.overlay .price {
+    background-color: #e67e22;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Seção do Carnê */
+.payment-info {
+  background: #f0ce9f;
+  color: #855a03;
+  padding: 120px 50px;   /* aumenta a altura da barra */
+  text-align: center;
+
+}
+.gallery img {
+  height: 140px;        /* reduz altura das imagens */
+  object-fit: cover;
+}
+.testimonials {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.testimonials h2 {
+  margin-bottom: 20px;
+  color: #006699;
+}
+
+.testimonial {
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #333;
+}
+.info-box {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-box h2 {
+    color: #d35400;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.btn-carne {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.preco {
+  background-color: red;   /* fundo vermelho */
+  color: white;            /* texto branco */
+  font-weight: bold;       /* deixa em negrito */
+  padding: 8px 12px;       /* espaço interno */
+  border-radius: 5px;      /* cantos arredondados */
+  display: inline-block;   /* mantém o bloco ajustado ao conteúdo */
+  margin-top: 10px;        /* espaço em relação ao texto acima */
+}
+.testimonials {
+  background: #f9f9f9;
+  padding: 40px 20px;
+}
+
+.testimonials h2 {
+  text-align: center;
+  color: #006699;
+  margin-bottom: 30px;
+}
+
+.testimonial {
+  background: #ffffff;        /* fundo branco */
+  border: 1px solid #ddd;     /* borda cinza clara */
+  border-radius: 6px;         /* cantos levemente arredondados */
+  padding: 20px;
+  margin-bottom: 20px;        /* espaço entre os quadrados */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* sombra leve */
+  width: 100%;                /* ocupa toda a largura */
+  max-width: 700px;           /* largura máxima */
+  margin-left: auto;          /* centraliza horizontalmente */
+  margin-right: auto;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.testimonial span {
+  display: block;
+  font-weight: bold;
+  color: #006699;
+}
+.logo a {
+  text-decoration: none;   /* remove sublinhado */
+  color: #c07c0f;             /* mantém cor branca */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #149523;          /* mantém destaque na palavra Viagens */
+}
+
+.detalhes-viagem {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.formulario {
+  background: #f9f9f9;
+  padding: 30px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formulario label {
+  font-weight: bold;
+}
+
+.formulario input, .formulario button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formulario button {
+  background: #006699;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.gallery h3 {
+  color: red;
+  font-weight: bold;
+}
+.payment-info .btn-carne {
+  display: inline-block;
+  margin-top: 20px;   /* cria espaço entre o texto e o botão */
+  background-color: #25D366; /* verde WhatsApp */
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.menu-whatsapp {
+  background-color: #25D366; /* verde WhatsApp */
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu-whatsapp:hover {
+  background-color: #1ebe5d; /* verde mais escuro no hover */
+}

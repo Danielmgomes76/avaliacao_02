@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xique Xique Viagens | O Mundo é Para Vocês</title>
+    <link rel="stylesheet" href="Xique2.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><a href="#topo">XiqueXique <span>Viagens</span></a></div>
+            <ul>
+                <li><a href="#destinos">Destinos</a></li>
+                <li><a href="#carne">Como Funciona</a></li>
+                <li><a id="menu-whatsapp" class="menu-whatsapp" target="_blank">Falar no WhatsApp</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="topo" class="hero">
+        <div class="hero-content">
+            <h1>O mundo também é para vocês.</h1>
+            <p>Realize o sonho da sua viagem em parcelas que cabem no bolso, sem precisar de cartão de crédito.</p>
+            <a href="#destinos" class="btn-cta">Escolher meu destino</a>
+        </div>
+    </section>
+
+    <section id="destinos" class="section-title">
+        <h2>Para onde vamos hoje?</h2>
+        <p>Explore o melhor do Brasil com planos no carnê.</p>
+    </section>
+
+    <section class="gallery">
+        <a href="Xique2-2.html?destino=fortaleza" class="destination-card">
+            <img src="https://viagemeturismo.abril.com.br/wp-content/uploads/2016/12/canoaquebrada16-copy1.jpg?quality=70&strip=info&w=923&w=636" alt="Praia paradisíaca no Nordeste">
+            <div class="overlay">
+                <h3><span class="nordeste">FORTALEZA</span></h3>
+                <p>"Praias paradisíacas e calor o ano todo."</p>
+                <div class="preco">12x R$80,00<br>Carnê ou Pix parcelado</div>
+            </div>
+        </a>
+
+        <a href="Xique2-2.html?destino=riodejaneiro" class="destination-card">
+            <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=600&q=80" alt="Pôr do sol na praia de Ipanema, Sudeste">
+            <div class="overlay">
+                <h3><span class="sudeste">RIO DE JANEIRO</span></h3>
+                <p>"Cultura, gastronomia e as luzes da cidade."</p>
+                <div class="preco">12x R$95,00<br>Carnê ou Pix parcelado</div>
+            </div>
+        </a>
+
+        <a href="Xique2-2.html?destino=riograndedosul" class="destination-card">
+            <img src="https://blog.gramadosuaviagem.com.br/wp-content/uploads/2026/01/serra-gaucha-a-partir-de-santa-cruz-do-sul-1-roteiro-1-1624124164-1280-08322135.jpg" alt="Paisagem da Serra Gaúcha, Sul">
+            <div class="overlay">
+                <h3><span class="sul">GRAMADO</span></h3>
+                <p>"O charme do frio e paisagens europeias."</p>
+                <div class="preco">12x R$110,00<br>Carnê ou Pix parcelado</div>
+            </div>
+        </a>
+
+        <a href="Xique2-2.html?destino=joaopessoa" class="destination-card">
+            <img src="https://content.presspage.com/uploads/685/6d74181d-ef4f-4cd2-88d3-5dfd9e59a245/1920_joaopessoabrazil-credits-booking.comcopygettyimages-678735644.jpg?64538">
+            <div class="overlay">
+                <h3><span class="joaopessoa">JOÃO PESSOA</span></h3>
+                <p>"Onde o sol nasce primeiro."</p>
+                <div class="preco">12x R$60,00<br>Carnê ou Pix parcelado</div>
+            </div>
+        </a>
+        <a href="Xique2-2.html?destino=belem" class="destination-card">
+            <img src="https://www.cartacapital.com.br/wp-content/uploads/2021/06/iStock-665693100-1.jpg">
+            <div class="overlay">
+                <h3><span class="belem">PARÁ</span></h3>
+                <p>"Terra da Amazônia, sabores únicos e cultura vibrante."</p>
+                <div class="preco">12x R$55,00<br>Carnê ou Pix parcelado</div>
+            </div>
+        </a>
+    </section>
+
+    <section id="carne" class="payment-info">
+  <div class="info-box">
+    <h2>Viagem no Carnê</h2>
+    <p>Sem consulta a crédito burocrática. Você planeja, paga as parcelas mensais e viaja com tudo quitado. Sua dignidade e seu lazer em primeiro lugar.</p>
+    
+    <!-- Botão separado abaixo do texto -->
+    <a id="btn-whatsapp" class="btn-carne" target="_blank">Quero fazer meu carnê</a>
+  </div>
+</section>
+
+    <section id="comentarios" class="testimonials">
+        <h2>O que dizem nossos clientes</h2>
+        <div class="testimonial">
+            <p>"Viajei para o Nordeste com a Xique Xique Viagens e foi incrível. Pagamento fácil e sem burocracia!"</p>
+            <span>- Maria, Fortaleza</span>
+        </div>
+        <div class="testimonial">
+            <p>"Consegui realizar meu sonho de conhecer Gramado. O carnê facilitou tudo!"</p>
+            <span>- João, Recife</span>
+        </div>
+        <div class="testimonial">
+            <p>"Atendimento excelente e confiança total. Recomendo para todos!"</p>
+            <span>- Ana, São Paulo</span>
+        </div>
+    </section>
+
+<script>
+  // Número do WhatsApp da agência (substitua pelo seu número com DDD e código do país)
+  const numero = "5585999999999"; // exemplo: +55 85 Fortaleza
+
+  // Mensagem padrão
+  const mensagem = "Olá, gostaria de falar com a Xique Xique Viagens pelo WhatsApp.";
+
+  // Monta o link do WhatsApp
+  const linkWhatsApp = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+  // Atualiza botão do carnê
+  document.getElementById("btn-whatsapp").setAttribute("href", linkWhatsApp);
+
+  // Atualiza link do menu superior
+  document.getElementById("menu-whatsapp").setAttribute("href", linkWhatsApp);
+</script>
+
+</body>
+</html>

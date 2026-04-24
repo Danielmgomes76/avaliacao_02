@@ -1,0 +1,396 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Star, Send, CheckCircle2, ArrowLeft, Sparkles } from "lucide-react";
+import { toast } from "sonner";
+
+const npsCategories = [
+  { range: [0, 6], label: "Detrator", color: "from-red-500 to-orange-500", emoji: "😞" },
+  { range: [7, 8], label: "Neutro", color: "from-yellow-500 to-amber-500", emoji: "😐" },
+  { range: [9, 10], label: "Promotor", color: "from-green-500 to-emerald-500", emoji: "😍" }
+];
+
+const getCategory = (score: number | null) => {
+  if (score === null) return null;
+  return npsCategories.find(cat => score >= cat.range[0] && score <= cat.range[1]);
+};
+
+export function MobileRating() {
+  const [step, setStep] = useState(1);
+  const [npsScore, setNpsScore] = useState<number | null>(null);
+  const [hoveredScore, setHoveredScore] = useState<number | null>(null);
+  const [comment, setComment] = useState("");
+  const [name, setName] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleNpsSelect = (score: number) => {
+    setNpsScore(score);
+  };
+
+  const handleContinue = () => {
+    if (npsScore === null) {
+      toast.error("Por favor, selecione uma pontuação");
+      return;
+    }
+    setStep(2);
+  };
+
+  const handleSubmit = () => {
+    if (npsScore === null) {
+      toast.error("Por favor, complete a avaliação");
+      return;
+    }
+    
+    setSubmitted(true);
+    toast.success("Feedback registrado com sucesso!");
+    
+    setTimeout(() => {
+      setStep(1);
+      setNpsScore(null);
+      setHoveredScore(null);
+      setComment("");
+      setName("");
+      setSubmitted(false);
+    }, 3500);
+  };
+
+  const handleBack = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const currentCategory = getCategory(hoveredScore ?? npsScore);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-pink-500/10 to-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="w-full max-w-lg relative z-10"
+      >
+        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20">
+          {/* Header */}
+          <div className="relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600" />
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE0djZoLTZ2LTZoNnptLTEyIDBoNnY2aC02di02em0yNCAwaDZ2NmgtNnYtNnptLTM2IDBoNnY2SDZ2LTZ6bTAgMTJoNnY2SDZ2LTZ6bTI0IDBoNnY2aC02di02em0tMTIgMGg2djZoLTZ2LTZ6bTI0IDBoNnY2aC02di02em0tMTIgMTJoNnY2aC02di02em0tMTIgMGg2djZoLTZ2LTZ6bTI0IDBoNnY2aC02di02em0tMzYgMGg2djZINnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30" />
+            
+            <div className="relative p-8 text-white">
+              {step > 1 && !submitted && (
+                <button
+                  onClick={handleBack}
+                  className="absolute left-4 top-4 p-2 hover:bg-white/20 rounded-full transition-colors"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+              )}
+              
+              <div className="text-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-4"
+                >
+                  <Sparkles className="w-8 h-8" />
+                </motion.div>
+                <h1 className="text-3xl font-bold mb-2">
+                  {submitted ? "Muito Obrigado!" : "Sua Opinião Importa"}
+                </h1>
+                <p className="text-white/80">
+                  {submitted 
+                    ? "Seu feedback foi registrado" 
+                    : "Ajude-nos a melhorar sua experiência"
+                  }
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Progress Dots */}
+          {!submitted && (
+            <div className="flex justify-center gap-2 py-4 bg-gray-50">
+              {[1, 2].map((dot) => (
+                <div
+                  key={dot}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    step >= dot ? 'w-8 bg-gradient-to-r from-violet-600 to-purple-600' : 'w-2 bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Content */}
+          <div className="p-8 min-h-[550px] flex flex-col">
+            <AnimatePresence mode="wait">
+              {/* Step 1: NPS Score */}
+              {step === 1 && (
+                <motion.div
+                  key="step1"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  className="flex-1 flex flex-col"
+                >
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                      Recomendaria nosso serviço?
+                    </h2>
+                    <p className="text-gray-600">
+                      De 0 a 10, qual a probabilidade?
+                    </p>
+                  </div>
+
+                  {/* NPS Scale */}
+                  <div className="mb-8">
+                    <div className="grid grid-cols-11 gap-2 mb-4">
+                      {[...Array(11)].map((_, i) => (
+                        <motion.button
+                          key={i}
+                          whileHover={{ scale: 1.1, y: -5 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handleNpsSelect(i)}
+                          onMouseEnter={() => setHoveredScore(i)}
+                          onMouseLeave={() => setHoveredScore(null)}
+                          className={`aspect-square rounded-xl font-bold text-lg transition-all relative ${
+                            npsScore === i
+                              ? 'bg-gradient-to-br from-violet-600 to-purple-600 text-white shadow-lg scale-110'
+                              : hoveredScore === i
+                              ? 'bg-gradient-to-br from-violet-400 to-purple-400 text-white'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          {i}
+                          {npsScore === i && (
+                            <motion.div
+                              layoutId="selected"
+                              className="absolute inset-0 rounded-xl border-4 border-white"
+                            />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                    
+                    <div className="flex justify-between text-xs text-gray-500 px-1">
+                      <span>Muito improvável</span>
+                      <span>Muito provável</span>
+                    </div>
+                  </div>
+
+                  {/* Category Display */}
+                  <AnimatePresence>
+                    {currentCategory && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                        className="mb-8"
+                      >
+                        <div className={`bg-gradient-to-r ${currentCategory.color} p-6 rounded-2xl text-white text-center`}>
+                          <div className="text-5xl mb-2">{currentCategory.emoji}</div>
+                          <p className="text-xl font-bold mb-1">{currentCategory.label}</p>
+                          <p className="text-sm text-white/80">
+                            {currentCategory.label === "Promotor" && "Você ama nosso serviço!"}
+                            {currentCategory.label === "Neutro" && "Podemos melhorar!"}
+                            {currentCategory.label === "Detrator" && "Vamos trabalhar nisso!"}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <motion.button
+                    whileHover={{ scale: npsScore !== null ? 1.02 : 1 }}
+                    whileTap={{ scale: npsScore !== null ? 0.98 : 1 }}
+                    onClick={handleContinue}
+                    disabled={npsScore === null}
+                    className={`w-full py-4 rounded-xl font-semibold transition-all ${
+                      npsScore !== null
+                        ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg hover:shadow-xl'
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    }`}
+                  >
+                    Continuar
+                  </motion.button>
+                </motion.div>
+              )}
+
+              {/* Step 2: Feedback */}
+              {step === 2 && !submitted && (
+                <motion.div
+                  key="step2"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  className="flex-1 flex flex-col"
+                >
+                  <div className="text-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                      Conte-nos mais
+                    </h2>
+                    <p className="text-gray-600">
+                      O que motivou sua avaliação?
+                    </p>
+                  </div>
+
+                  {/* Score recap */}
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="bg-gradient-to-br from-violet-50 to-purple-50 p-4 rounded-2xl mb-6 border border-violet-100"
+                  >
+                    <div className="flex items-center justify-center gap-4">
+                      <span className="text-gray-600">Sua nota:</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-4xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+                          {npsScore}
+                        </span>
+                        <span className="text-2xl">{getCategory(npsScore)?.emoji}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <div className="flex-1 space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Nome (opcional)
+                      </label>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Como podemos te chamar?"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-violet-500 focus:ring-4 focus:ring-violet-100 outline-none transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Comentário (opcional)
+                      </label>
+                      <textarea
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="Compartilhe sua experiência conosco..."
+                        rows={6}
+                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-violet-500 focus:ring-4 focus:ring-violet-100 outline-none transition-all resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 mt-6">
+                    <motion.button
+                      whileTap={{ scale: 0.98 }}
+                      onClick={handleSubmit}
+                      className="w-full bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                    >
+                      <Send className="w-5 h-5" />
+                      Enviar Avaliação
+                    </motion.button>
+                    
+                    <button
+                      onClick={handleSubmit}
+                      className="w-full text-gray-600 font-medium py-3 hover:text-gray-800 transition-colors text-sm"
+                    >
+                      Enviar sem comentário
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Success State */}
+              {submitted && (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex-1 flex flex-col items-center justify-center text-center py-8"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15,
+                      delay: 0.2
+                    }}
+                    className="relative mb-6"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-2xl opacity-30 animate-pulse" />
+                    <CheckCircle2 className="w-24 h-24 text-green-500 relative" strokeWidth={2} />
+                  </motion.div>
+                  
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-3xl font-bold text-gray-800 mb-3"
+                  >
+                    Feedback Enviado!
+                  </motion.h2>
+                  
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-gray-600 text-lg mb-8 px-4"
+                  >
+                    Sua opinião é fundamental para continuarmos melhorando
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-2xl border border-violet-100 w-full"
+                  >
+                    <div className="flex items-center justify-center gap-6">
+                      <div className="text-center">
+                        <div className="text-5xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                          {npsScore}
+                        </div>
+                        <p className="text-sm text-gray-600">Sua nota</p>
+                      </div>
+                      <div className="text-6xl">
+                        {getCategory(npsScore)?.emoji}
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-sm text-gray-500 mt-8"
+                  >
+                    Você será redirecionado em instantes...
+                  </motion.p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Bottom Tag */}
+        {!submitted && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-center mt-6"
+          >
+            <p className="text-white/70 text-sm flex items-center justify-center gap-2">
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              Seguro e confidencial
+            </p>
+          </motion.div>
+        )}
+      </motion.div>
+    </div>
+  );
+}
